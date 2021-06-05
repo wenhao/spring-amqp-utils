@@ -58,3 +58,7 @@ application:
   mq:
     enbaled: true
 ```
+
+### Best Practise
+
+每一个聚合根下发布的所有类型的事件对应一个exchange，exchange设置为topic，queue可以配置接收某一种类型的事件，也可以配置接收所有某种聚合相关的事件，还可以配置接收所有事件。exchange的命名格式为“限界上下文.聚合名”，routing key为“聚合名.事件名”，比如对于Order上下文有Product聚合根的“已创建”事件，那么exchange为"order.product"，routing key为'product.created'。
