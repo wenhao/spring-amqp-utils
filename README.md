@@ -1,5 +1,8 @@
 # spring-amqp-utils
 
+1. Declarative message queue event. 
+2. Provide Dummy implementation by `application.yml` configuration.
+
 ### event 
 
 ```java
@@ -46,6 +49,8 @@ public class OrderEventListener {
 ```
 
 ### Enable MQ 
+
+application.yml
 
 ```yaml
 application:
