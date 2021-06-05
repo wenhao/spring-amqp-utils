@@ -10,7 +10,7 @@ import static com.github.wenhao.domain.MessageQueue.EXCHANGE_ORDER;
 import static com.github.wenhao.domain.MessageQueue.ROUTING_ORDER_CREATED;
 
 @Event(exchange = EXCHANGE_ORDER, routingKey = ROUTING_ORDER_CREATED)
-public class OrderCreatedEvent extends OrderEvent implements Serializable {
+public class OrderCreatedEvent extends OrderEvent {
 
     private Date date;
 
