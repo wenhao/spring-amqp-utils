@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import static com.github.wenhao.domain.MessageQueue.EXCHANGE_ORDER;
@@ -15,6 +16,7 @@ import static com.github.wenhao.domain.MessageQueue.ROUTING_ORDER_CREATED;
 
 @Slf4j
 @Service
+@ConditionalOnProperty(prefix = "application.mq", name = "enabled", havingValue = "true")
 public class OrderEventListener {
 
     @RabbitListener(bindings = {@QueueBinding(value = @Queue(QUEUE_ORDER_CREATED), exchange = @Exchange(value = EXCHANGE_ORDER, type = ExchangeTypes.TOPIC), key = ROUTING_ORDER_CREATED)})

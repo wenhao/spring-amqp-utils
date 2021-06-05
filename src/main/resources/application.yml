@@ -5,3 +5,7 @@ spring:
     virtual-host: /
     username: admin
     password: admin
+
+application:
+  mq:
+    enbaled: true

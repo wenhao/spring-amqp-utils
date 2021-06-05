@@ -13,6 +13,7 @@ public class OrderCreatedEvent extends OrderEvent {
 
 ```java
 @Service
+@ConditionalOnProperty(prefix = "application.mq", name = "enabled", havingValue = "true")
 public class OrderEventDispatcher implements EventDispatcher<OrderEvent> {
 
     private final AmqpTemplate amqpTemplate;
@@ -34,6 +35,7 @@ public class OrderEventDispatcher implements EventDispatcher<OrderEvent> {
 ```java
 @Slf4j
 @Service
+@ConditionalOnProperty(prefix = "application.mq", name = "enabled", havingValue = "true")
 public class OrderEventListener {
 
     @RabbitListener(bindings = {@QueueBinding(value = @Queue(QUEUE_ORDER_CREATED), exchange = @Exchange(value = EXCHANGE_ORDER, type = ExchangeTypes.TOPIC), key = ROUTING_ORDER_CREATED)})
@@ -41,4 +43,12 @@ public class OrderEventListener {
         log.info("order: {}, date: {}", event.getOrderId(), event.getDate());
     }
 }
+```
+
+### Enable MQ 
+
+```yaml
+application:
+  mq:
+    enbaled: true
 ```
