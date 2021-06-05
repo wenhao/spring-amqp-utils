@@ -3,7 +3,6 @@ package com.github.wenhao.domain;
 
 import com.github.wenhao.event.annotation.Event;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import static com.github.wenhao.domain.MessageQueue.EXCHANGE_ORDER;
