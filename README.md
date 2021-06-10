@@ -39,10 +39,9 @@ public class OrderEventDispatcher implements EventDispatcher<OrderEvent> {
 @Slf4j
 @Service
 @ConditionalOnProperty(prefix = "application.mq", name = "enabled", havingValue = "true")
-@RabbitListener(bindings = {@QueueBinding(value = @Queue(QUEUE_ORDER_CREATED), exchange = @Exchange(value = EXCHANGE_ORDER, type = ExchangeTypes.TOPIC), key = ROUTING_ORDER_CREATED)})
 public class OrderEventListener {
 
-    @RabbitHandler
+    @RabbitListener(bindings = {@QueueBinding(value = @Queue(QUEUE_ORDER_CREATED), exchange = @Exchange(value = EXCHANGE_ORDER, type = ExchangeTypes.TOPIC), key = ROUTING_ORDER_CREATED)})
     public void onOrderCreated(OrderCreatedEvent event) {
         log.info("order: {}, date: {}", event.getOrderId(), event.getDate());
     }
